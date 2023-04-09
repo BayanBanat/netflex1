@@ -17,7 +17,7 @@ function Movie(props) {
         <Card.Img variant="top" src={fulPath} />
         <Card.Body>
           <Card.Title>{props.movie.title}</Card.Title>
-          <Button variant="primary" onClick={handleShow}>show details</Button>
+          <Button variant="primary" onClick={handleShow}>add to fav</Button>
         </Card.Body>
       </Card>
 
