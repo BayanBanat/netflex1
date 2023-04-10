@@ -4,6 +4,7 @@ import ModalMovie from "./ModalMovie";
 import {useState} from 'react';
 
 function Movie(props) {
+  console.log("5555",props);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -21,7 +22,7 @@ function Movie(props) {
         </Card.Body>
       </Card>
 
-      <ModalMovie show={show}  handleClose={handleClose} movieData = {props.movie} fulPath={fulPath}/>
+      <ModalMovie show={show}  handleClose={handleClose} movie = {props.movie} fulPath={fulPath} commentHandler={props.commentHandler}/>
       </>
     )
     }
