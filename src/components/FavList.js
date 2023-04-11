@@ -1,8 +1,13 @@
 import {useEffect, useState} from 'react';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import ModalFav from './ModalFav';
 function FavList(){
     const [favMovies,setfavMovies ] = useState([]);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
     async function getfavMovies(){
@@ -36,14 +41,16 @@ function FavList(){
     }
 
     async function handleUpdate(id){
+        handleShow();
         let url =`${process.env.REACT_APP_SERVER_URL}/UPDATE/${id}`;
 
         await fetch(url,{
 
-            method: "UPDATE",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
+
             
         })
         
@@ -56,6 +63,13 @@ function FavList(){
 
     },[])
 
+  
+        const [comment, setComment] = useState("");
+      
+        function handleCommentUpdate(newComment) {
+          setComment(newComment);
+        }
+    
 // let fullpath='https://www.themoviedb.org/t/p/w220_and_h330_face'+props.poster_path;
 
     return(
@@ -78,8 +92,9 @@ function FavList(){
 
             })
         }
+        <ModalFav show={show} handleClose={handleClose}  handleCommentUpdate={handleCommentUpdate} comment={comment}/>
         </>
     )
 }
-export default FavList;
+ export default FavList;
 
